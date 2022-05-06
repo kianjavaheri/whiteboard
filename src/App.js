@@ -1,6 +1,9 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import rough from "roughjs/bundled/rough.esm";
 import getStroke from "perfect-freehand";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowPointer, faHighlighter, faSquare, faPencil, faUndo, faRedo } from "@fortawesome/free-solid-svg-icons";
+import Tooltip from '@mui/material/Tooltip';
 
 import './App.css';
 import Whiteboard from "./Components/Whiteboard";
@@ -21,7 +24,7 @@ const createElement = (id, x1, y1, x2, y2, type) => {
     case "text":
       return { id, type, x1, y1, x2, y2, text: "" };
     default:
-      throw new Error(`Type not recognised: ${type}`);
+      throw new Error(`Type not recognized: ${type}`);
   }
 };
 
@@ -62,7 +65,7 @@ const positionWithinElement = (x, y, element) => {
     case "text":
       return x >= x1 && x <= x2 && y >= y1 && y <= y2 ? "inside" : null;
     default:
-      throw new Error(`Type not recognised: ${type}`);
+      throw new Error(`Type not recognized: ${type}`);
   }
 };
 
@@ -179,7 +182,7 @@ const drawElement = (roughCanvas, context, element) => {
       context.fillText(element.text, element.x1, element.y1);
       break;
     default:
-      throw new Error(`Type not recognised: ${element.type}`);
+      throw new Error(`Type not recognized: ${element.type}`);
   }
 };
 
@@ -253,7 +256,7 @@ const App = () => {
         };
         break;
       default:
-        throw new Error(`Type not recognised: ${type}`);
+        throw new Error(`Type not recognized: ${type}`);
     }
 
     setElements(elementsCopy, true);
@@ -367,8 +370,8 @@ const App = () => {
   };
 
   return (
-    <div>
-      {/* <Whiteboard /> */}
+    <div className="app">
+      <Whiteboard />
       <div className="selection-container">
         <div className="checks">
           <input
@@ -377,28 +380,28 @@ const App = () => {
             checked={tool === "selection"}
             onChange={() => setTool("selection")}
           />
-          <label htmlFor="selection">Selection</label>
-          <input type="radio" id="line" checked={tool === "linse"} onChange={() => setTool("line")} />
-          <label htmlFor="line">Line</label>
+          <Tooltip title="Select"><label htmlFor="selection"><FontAwesomeIcon icon={faArrowPointer} /></label></Tooltip>
+          <input type="radio" id="line" checked={tool === "line"} onChange={() => setTool("line")} /> 
+          <Tooltip title="Line"><label htmlFor="line"><FontAwesomeIcon icon={faHighlighter} /></label></Tooltip>
           <input
             type="radio"
             id="rectangle"
             checked={tool === "rectangle"}
             onChange={() => setTool("rectangle")}
           />
-          <label htmlFor="rectangle">Rectangle</label>
+          <Tooltip title="Rectangle"><label htmlFor="rectangle"><FontAwesomeIcon icon={faSquare} /></label></Tooltip>
           <input
             type="radio"
             id="pencil"
             checked={tool === "pencil"}
             onChange={() => setTool("pencil")}
           />
-          <label htmlFor="pencil">Pencil</label>
+          <Tooltip title="Draw"><label htmlFor="pencil"><FontAwesomeIcon icon={faPencil} /></label></Tooltip>
         </div>
 
         <div className="do">
-          <button onClick={undo}>Undo</button>
-          <button onClick={redo}>Redo</button>
+          <Tooltip title="Undo"><button onClick={undo}><FontAwesomeIcon icon={faUndo} /></button></Tooltip>
+          <Tooltip title="Redo"><button onClick={redo}><FontAwesomeIcon icon={faRedo} /></button></Tooltip>
         </div>
       </div>
 
