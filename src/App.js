@@ -1,12 +1,14 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import rough from "roughjs/bundled/rough.esm";
 import getStroke from "perfect-freehand";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowPointer, faHighlighter, faSquare, faPencil, faUndo, faRedo } from "@fortawesome/free-solid-svg-icons";
 import Tooltip from '@mui/material/Tooltip';
 
 import './App.css';
 import Whiteboard from "./Components/Whiteboard";
+import SignIn from "./Components/SignIn";
 
 const generator = rough.generator();
 
@@ -371,6 +373,7 @@ const App = () => {
 
   return (
     <div className="app">
+      <SignIn/>
       <Whiteboard />
       <div className="selection-container">
         <div className="checks">
@@ -400,8 +403,8 @@ const App = () => {
         </div>
 
         <div className="do">
-          <Tooltip title="Undo"><button onClick={undo}><FontAwesomeIcon icon={faUndo} /></button></Tooltip>
-          <Tooltip title="Redo"><button onClick={redo}><FontAwesomeIcon icon={faRedo} /></button></Tooltip>
+          <Tooltip title="Undo"><button onClick={undo}><FontAwesomeIcon icon={faUndo} className="icon"/></button></Tooltip>
+          <Tooltip title="Redo"><button onClick={redo}><FontAwesomeIcon icon={faRedo} className="icon"/></button></Tooltip>
         </div>
       </div>
 
