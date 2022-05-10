@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { Form, Button, Card } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-function SignIn() {
+function SignUp() {
   const emailRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
@@ -11,7 +11,7 @@ function SignIn() {
     <>
     <Card>
       <Card.Body>
-        <h2 className="text-center mb-4">Log In</h2>
+        <h2 className="text-center mb-4">Sign Up</h2>
         <Form>
           <Form.Group id="email">
             <Form.Label>Email</Form.Label>
@@ -28,7 +28,7 @@ function SignIn() {
             <Form.Control type="password" ref={passwordConfirmRef} required />
           </Form.Group>
 
-          <Button className="w-100" type="submit">
+          <Button className="w-100 p-15" type="submit">
             Log In
           </Button>
         </Form>
@@ -38,4 +38,4 @@ function SignIn() {
   )
 }
 
-export default SignIn
+export default SignUp
