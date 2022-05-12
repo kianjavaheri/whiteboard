@@ -195,14 +195,15 @@ function Whiteboard() {
     const [cursor, setCursor] = useState("auto");
 
     const changeCursor = () => {
-      setCursor(prevState => {
-        if(prevState === "crosshair"){
+      setCursor(() => {
+        if (tool === "pencil") {
+          return "crosshair";
+        } else {
           return "auto";
         }
-        return "crosshair";
       });
     }
-  
+    
     useLayoutEffect(() => {
       const canvas = document.getElementById("canvas");
       const context = canvas.getContext("2d");
